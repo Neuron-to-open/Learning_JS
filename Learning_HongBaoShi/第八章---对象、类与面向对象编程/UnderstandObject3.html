@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>理解对象3</title>
+    <script>
+        console.log( true === 1 ) ;
+        console.log( {} === {} ) ;
+        console.log ( "2" === 2 ) ;
+
+        // 这些情况再不同JavaScript的引擎中表现不同，但仍被认为是相等的
+        console.log( +0 === -0 ) ;
+        console.log( +0 === 0 ) ;
+        console.log( -0 === 0) ;
+        
+        // 要确定NaN的相等性，必须使用极为讨厌的isNaN()
+        console.log(NaN === NaN) ;
+        console.log( isNaN( NaN )) ;
+        console.log ( NaN === NaN ) ;
+
+        //Es6新增了Object.is()，这个方法与===很像，但同时也考虑到上述边界情形，这个方法必须接受两个参数
+        console.log(Object.is(true , 1)) ;
+        console.log(Object.is({} , {})) ;
+        console.log(Object.is("2" , 2)) ;
+
+        console.log(Object.is(+0 , -0)) ;
+        console.log(Object.is(-0, 0)) ;
+        console.log(Object.is(+0 , 0)) ;
+
+        console.log(Object.is(NaN , NaN)) ;
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

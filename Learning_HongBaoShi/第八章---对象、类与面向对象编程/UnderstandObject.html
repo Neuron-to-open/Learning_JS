@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>理解对象</title>
+    <script>
+        /**
+         * 理解对象-----通过实例
+         * 创建对象-----两种方法
+        */
+       let person = new Object() ;
+       person.name = "Amy" ;
+       person.age = 90 ;
+       person.job = "Science of Computer" ;
+       person.sayName = function(){
+        console.log(  this.name ) ;
+       };
+
+       console.log(person) ;
+       
+       let student = {
+        name : "Yjy" ,
+        age : 20 ,
+        job : "student" ,
+        sayname(){
+            console.log(this.age) ;
+        } ,
+       }
+
+       student.sayname();
+
+       /**
+        * 详谈对象的数据类型
+        * 属性的类型：Configurable - Enumberable - Writable - Value
+       */
+      let p1 = {} ;
+      Object.defineProperty(p1 , "name" , {
+        writable : false ,
+        value : "Nicholas" ,
+        configurable : false ,
+      }) ;
+
+      console.log(p1.name) ;
+      p1.name = "sad " ;
+
+      console.log(p1.name) ;
+
+      delete p1.name ;
+
+      console.log(p1.name) ;
+    //   Object.defineProperty(p1, "name", {
+    //     configurable : true ,
+    //     value : 'sd ' ,
+    //   })
+
+    //   console.log(p1.name) ;
+
+      let book = {
+        year_ : 2022 ,
+        edition : 1 ,
+      }
+
+      Object.defineProperty(book , "year" , {
+        get(){
+            return this.year_ ;
+        } ,
+        set(newValue){
+            if ( newValue > 2022 ){
+                this.year_ = newValue ;
+                this.edition += newValue - 2022 ;
+            }
+        } ,
+      }) ;
+
+      book.year = 2022 ;
+      console.log( book.edition ) ;
+      console.log ( book.year) ;
+      console.log( book );
+
+      console.log( Object.getOwnPropertyDescriptors(book) ) ;
+
+      /**
+       * 合并对象
+       * Merge Object
+      */
+     let dest , src , result ;
+     dest = {}  ;
+
+     src = { id : "src" ,} ;
+
+     result = Object.assign(dest , src) ;
+
+
+    console.log ( dest === result ) ;
+    console.log ( dest !== src ) ;
+    console.log ( result ) ;
+    console.log ( dest ) ;
+
+    /**
+     * 多个源对象
+    */
+    result = Object.assign( dest , { a : "foo" ,} , { b : "bar" , }) ;
+    console.log( result ) ;
+
+    /**
+     * 获取函数与设置函数
+    */
+    dest = {
+      set a(val){
+        console.log ("Invoked dest setter with param ${val}") ;
+      } ,
+
+    } ;
+
+    src = {
+      get a(){
+        console.log ( "Invoked src getter" ) ;
+        return "foo" ;
+      } ,
+    }
+
+    Object.assign(dest , src) ;
+
+    console.log(dest) ;
+    // console.log()
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

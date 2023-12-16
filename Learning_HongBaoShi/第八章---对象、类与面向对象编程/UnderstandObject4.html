@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>理解对象4</title>
+    <script>
+        let name = "Matt" ;
+        let person = {
+            name : name ,
+        } ;
+        console.log ( person) ;
+
+        /**
+         * 属性值简写
+         * 简写属性名只要使用变量名(不用再写冒号)
+         * 就会自动被解释为同名的属性键。
+         * 如果没有找到同名变量，则会抛出ReferenceError
+        */
+       let p2 = {
+        name ,
+       }
+       console.log( p2 ) ;
+
+       /**
+        * 代码压缩程序会在不同作用域之间保留属性名，以防止找不到引用。
+       */
+      function makeperson(name){
+        return {
+            name ,
+        } ;
+      } ;
+
+      person = makeperson("Amy") ;
+      console.log(person.name) ;
+
+      // 如果使用Google Closure编译器压缩，那么函数参数会被缩短，而属性名不变
+      function makeperson2(a){
+        return {
+            name : a ,
+        } ;
+      } ;
+
+      person = makeperson2("Amy") ;
+      console.log(person.name) ;
+
+
+      /**
+       * 可计算属性
+      */
+      const nameKey = "name" ;
+      const ageKey = "age" ;
+      const jobKey = "job" ;
+
+      let person2 = {} ;
+      p2[nameKey] = "matt" ;
+      p2[ageKey] = 27 ;
+      p2[jobKey] = "Software engineer" ;
+
+      console.log(p2) ;
+
+      let p3 = {
+        [nameKey] : "Json" ,
+        [ageKey] : 20 ,
+        [jobKey] : "Hardware engineer" ,
+      } ;
+      console.log(p3) ;
+
+      let uniqueToken = 0 ;
+      function getUniqueKey( key ){
+        return `${key}_${uniqueToken ++ }` ;
+      }
+
+      let p4 = {
+        [getUniqueKey("nameKey")] : "Jack" ,
+        [getUniqueKey("ageKey")] : 20 ,
+        [getUniqueKey("jobKey")] : "Artification engineer" ,
+      } ;
+      console.log(p4) ;
+      console.log ();
+
+      
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据类型</title>
+    <script>
+        let message = "Hello world" ;
+        console.log(typeof message) ;
+
+        console.log ( typeof (message) ) ;
+        console.log( typeof 90) ;
+        console.log(typeof (null)) ;
+
+        let message2 ;
+        console.log(message2 === undefined) ; // true 
+
+        /**
+         * let message2 = undefined 
+         * console.log( message2 === undefined ) // true 
+        */
+        let message3 ; //变量被声明了，但是是undefined
+
+        console.log ( message3 ); // "undefined"
+        // console.log(age) ; // 报错
+
+        let message4 ; // 变量被声明了，但是是undefined
+
+        // 确保age没有被声明
+        //let age 
+        console.log( typeof message4 ); //
+        console.log( typeof age ) ;
+
+        let message5 ; //变量被声明了，但是是undefined
+
+        if (message5 ){
+	        //这个块不会执行
+        }
+
+        if ( !message5 ) {
+	        // 这个块会执行
+        }
+
+        if ( age ){
+	        // 这里会报错
+        }   
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
