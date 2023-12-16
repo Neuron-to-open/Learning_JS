@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>var-const-let</title>
+    <script>
+        // var a = 10 ;
+        // console.log ( this.window) ;
+
+
+        // let b = "Bob" ;
+        
+        // console.log( b ) ;
+        // console.log(window.b) ;
+        // console.log(window["b"]) ;
+
+        // const c = "Amy ";
+        // console.log(typeof c) ;
+
+        function test(){
+            message = "hi" ;
+
+        }
+        test();
+        console.log(message) ;
+
+        function foo(){
+            console.log( age ) ;
+            var age = 26 ;
+
+        } 
+        foo(); 
+
+        function foo2(){
+	        var age = 26 ;
+	        var age = 36 ;
+	        var age = 46 ;
+        }
+        foo2() ;
+
+        /**
+         * let 声明
+        */
+       if ( true ){
+        var name = "Matt" ;
+        console.log(name) ;
+       }
+       console.log( name ) ;
+
+       if (true){
+        let age = 89 ;
+        console.log(age) ;
+       }
+
+    //    console.log(age) ;
+
+       var name = "Matt" ;
+       console.log( window.name ) ; // "Matt" 
+
+       let age = 20 ;
+    //    debugger ;
+       console.log ( window.age ) ; // 20
+
+         // 假设脚本不确定页面中是否已经声明了同名变量
+        // 那它可以假设还没有声明过
+        if (typeof name == "undefined"){
+            let name ;
+         }
+
+	    // name被限制在if{}块的作用域内
+	    // 因此这个赋值形同全局赋值
+        name = "Matt" ;
+	    // 这里没问题，因为可以作为一个提升声明来处理
+	    // 不需要检查之前是否声明过同名变量
+
+        console.log( window.name ) ;
+	    try{
+            console.log ( age ) ;
+        }catch (error){
+            let age ;
+        }
+        // debugger ;
+	    age = 26 ;
+        
+	    // age 被限制在catch{}块的作用域内
+	    // 因此这个赋值形同全局赋值
+
+        function f1() {
+
+            let n = 5;
+            if (true) {
+                let n = 10;
+                n = n * 10 ;
+                console.log(n) ;
+            }
+            console.log(n) ;
+        }
+        // debugger ;
+        f1() ;    
+        for( var i = 0 ; i < 5 ; ++ i){
+	        // loop
+        }
+        console.log (i) ; // 5
+
+        // debugger ;
+        for( var i = 0 ; i < 5 ; ++ i){
+            setTimeout( ()=> console.log (i) , 0 ) ;
+        }          
+
+        
+        for( let i = 0 ; i < 5 ; ++ i){
+            
+	        setTimeout( ()=> console.log (i) , 0 ) ;
+	
+        }
+
+       
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+    <script>
+        /**
+         * 显示地创建Object的实例有两种方式
+         * 第一种使用new + Object
+        */
+       let person = new Object() ;
+       person.name = "Nicho" ;
+       person.age = 20 ;
+       console.log( person );
+
+       /**
+        * 第二种方法
+        * 使用对象字面量(object literal)表示法
+        * 更常用，因为给人一种封装的感觉，而且代码更少
+       */
+      let p2 = {
+        name : "Amy" ,
+        age : 19 ,
+        5 : true ,
+      } ;
+      console.log( p2[5]) ;
+
+      function displayInfo(args) {
+        let output = "" ;
+        if ( typeof args.name == "string" ){
+            output += "Name: " + args.name + "\n" ;  
+        }
+
+        if (typeof args.age == "number"){
+            output += "Age: " + args.age + "\n" ;
+        }
+
+        alert(output) ;
+
+      }
+
+      displayInfo(p2) ;
+
+      console.log( person["name"]) ;
+      console.log( person.name ) ;
+      let propertyName = "name" ;
+      console.log( person[propertyName]) ;
+
+      person["first Name"] = "Amy" ;
+      
+        
+</script>
+</head>
+<body>
+    
+</body>
+</html>

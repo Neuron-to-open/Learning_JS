@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>null</title>
+    <script>
+        let car = null ;
+        console.log ( typeof car ) ; //object
+        if (car != null) {
+            console.log ( car ) ;
+        }
+
+        console.log ( null == undefined );
+
+        let project = {} ; 
+        console.log ( project == null ) ;
+        
+        let message = null ;
+        let age ;
+        if ( message ){
+            // 这个块不会执行
+        }
+
+        if ( !message ){
+            // 这个块会执行
+        }
+
+        if ( age ){
+            //这个块不会执行
+        }
+
+        if ( !age ){
+            // 这个块会执行
+        }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

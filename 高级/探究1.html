@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>探究1</title>
+</head>
+<script>
+    /**
+     * Js构造函数 -----》已构造Personjuli
+     *
+     * 1、构造函数
+     * function Person(name , age ){
+     *     this.name = name ;
+     *     this.age = age ;
+     * }
+     *
+     * 2、对象字面量
+     * let p1 = {
+     *     this.name = name ;
+     *     this.age = age ;
+     * }
+     *
+     * 3、new Object
+     * var p1 = new Object() ;
+     * p1.name = name ;
+     * p1.age = age ;
+     *
+     * */
+    // 全局变量 创建的是Object的实例，所以p1的原型直接指向Object prototype
+    var p1 = {
+       name : "xxx" ,
+       age : 20
+    }
+
+    console.log( p1.__proto__ === Object.prototype ) ;
+
+    // 构造器创建爱
+    function Animal(){
+        c = 1 ;
+    }
+    let animal = new Animal() ;
+    console.log( animal.__proto__ ) ;
+    console.log( animal.__proto__ === Animal.prototype )
+
+    // Object.create
+    // 直接讲Dog作为dog的__proto__
+    let Dog = {
+        c : 1
+    }
+
+    let dog = Object.create( Dog ) ;
+    console.log( dog.__proto__ ) ;
+    console.log( dog.__proto__ === Dog)
+
+    console.log( Animal.prototype.__proto === Function.prototype.__protot__) ;
+
+</script>
+<body>
+
+</body>
+</html>

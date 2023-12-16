@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.1</title>
+    <script>
+        <!-- ECMASrcipt 包含两种不同类型的数据： 原始值和引用值 -->
+        // 基本数据类型 Undefined and Null  Boolean  Number String Symbol
+        // 引用数据类型: Object
+        
+
+        // 复杂值 也就是引用值，存储于堆区
+        let person = new Object() ;
+        person.name = "yjy" ;
+        console.log(person.name) ;
+
+        // 简单值 也就是原始数据 存储于栈区
+        var str = "Hello World";
+        var num = 10;
+        var bol = true;
+        var myNull = null;
+        var undef = undefined;
+        console.log(typeof str); // string
+        console.log(typeof num); // number
+        console.log(typeof bol); // boolean
+        // null 打印的是Object 是历史遗留问题
+        console.log(typeof myNull); // object
+        console.log(typeof undef); // undefined 
+
+        //访问方式 复杂值是通过引用进行存储和操作的，而不是实际值
+        var obj = {} ;
+        var obj2 = obj ;
+        obj.name = "zhangsan" ;
+        console.log(obj.name) ;
+        console.log(obj2.name) ;
+        obj.name = null ;
+        console.log(obj.name) ;
+        console.log(obj2.name) ;
+
+        // 简单值是直接访问的，会直接改变其值
+        var str = "Hello" ;
+        var str2 = " str" ;
+        str = null ;
+        console.log(str , str2) ;
+
+        //变量赋值
+        // 直接赋值与引用赋值
+        var a = 2 ;
+        var b = a ;
+        b = 5 ;
+        console.log (a) ;
+        console.log(b) ;
+        var a = {value:1} ;
+        var b = a ;
+        b.value = 10 ;
+        console.log (a.value) ;
+
+        // 比较方式
+        //简单值采用值比较，而复杂值采用引用比较。
+        //复杂值只有在引用相同的对象（即有相同的地址）时才相等。
+        //即使是包含相同对象的两个变量也彼此不相等，因为它们并不指向同一个对象。
+        var a = 10 ;
+        var b = 10 ;
+        var c = new Number(10) ;
+        var d = c ;
+        console.log( a === b ) ;
+        console.log( a === c ) ;
+        console.log( a == c ) ;
+        console.log( a === d) ;
+        console.log( d === c ) ;
+        d = 10 ;
+        console.log ( d == c) ;
+        console.log( d === c) ;  
+
+
+        //动态属性
+        var str = "test" ;
+        str.abc = true ;
+        console.log ( str.abc ) ;
+        var obj = {} ;
+        obj.abc = true ;
+        console.log(obj.abc) ;
+        var obj = {name : 'zhangsan'};
+        var obj2 = obj;
+        var obj3 = obj2;
+        obj.name = 'abc';
+        console.log(obj.name, obj2.name, obj3.name);
+        // abc abc abc 
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

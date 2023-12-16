@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4.2</title>
+    <script>
+        // 执行上下文包括：
+        //         全局上下文
+        //         函数上下文
+        //         块级上下文
+        //          全局上下文是最外层的上下文。根据 ECMAScript 实现的宿主环境，表示全局上下文的对象可能不一样。
+        //          在浏览器中，全局上下文就是常说的 window 对象，所有通过 var 定义的全局变量和函数都会成为 
+        //          window 对象的属性和方法。使用 let 和 const 的顶级声明不会定义在全局上下文中，但在作用域链解析上效果是一样的。
+        //          上下文在其所有代码都执行完毕后会被销毁，包括定义在它上面的所有变量和函数（全局上下文在应用程序退出前才会被销毁，比如关闭网页或退出浏览器）。
+        
+        //          函数上下文每个函数调用都有自己的上下文。当代码执行流进入函数时，
+        //          函数的上下文被推到一个上下文栈上。在函数执行完之后，上下文栈会弹出该函数上下文，
+        //          将控制权返还给之前的执行上下文。ECMAScript 程序的执行流就是通过这个上下文栈进行控制的。
+        //          
+        //          上下文的代码在执行的时候,会创建变量对象的一个作用域链.这个作用域链决定了各级上下文中的代码在访问变量和函数时的顺序.
+        //          代码正在执行的上下文的变量对象始终位于作用域链的最前端.如果上下文是函数,则其活动对象用作变量对象.活动对象最初
+        //          只有一个定义变量:arguments.(全局上下文中没有这个变量)作用域链中的下一个变量对象来自包含上下文,下一个对象来自再下一个包含上下文.
+        //          以此类推直至全局上下文;全局上下文的变量对象是作用域链的最后一个变量对象.
+
+        //          代码执行时的标识符解析是通过沿作用域链逐级搜索标识符名称完成的.搜索过程始终从作用域链的最前端开始,然后逐级往后,知道找到标识符
+
+        /**
+         * 函数changeColor()的作用域包含两个对象:
+         * 一个是函数自己的变量对象，就是(定义 arguments 对象的那个)
+         * 另外一个是全局上下文的变量对象
+         * 
+         * 函数内部之所以能够访问变量color，是因为可以在作用域链中找到它。
+        */
+        var color = "blue" ;
+        function changeColor() {
+            if ( color === "blue" ){
+                color = "red" ;
+            }else{
+                color = "blue" ;
+            }
+            
+        }
+
+        this.window.changeColor(color) ;
+        // changeColor() ;
+        console.log(color)
+        
+        // 作用域链增强：var、let、const
+        // 通过google的console会发现 color属性添加进入了this.window的属性中。
+        console.log ( this.window )
+
+        // 局部作用域中定义的变量可作用于局部上下文中替换全局变量
+        var color = "blue" ;
+        function mychangeColor(){
+            let anothercolor = "red" ;
+
+            function swapColors(){
+                let tempColor = anothercolor ;
+                another = color ;
+                color = tempColor ;
+                //此处swapColors可以访问color、anotherColor、tempColor
+            }
+
+             // 可以访问color和anotherColor
+            swapColors() ;
+        }
+
+       
+        // let a = anothercolor ;
+        // console.log(a)
+        // 可以访问color
+        changeColor() ;
+
+        
+        //作用域增强 
+        /**
+         * 某些语句会导致在作用域链前端临时添加一个上下文，这个上下文在代码执行后
+         * 被删除
+         * 
+        */
+
+        // try/catch语句的catch块
+        // with语句(不推荐)
+
+        /**
+         * 变量声明的作用域
+         * var 声明的作用域：
+         *      在使用var声明变量时，变量会被自动添加到最接近的
+         *      上下文中。在函数中，最接近的上下文就是函数的局部上下文。
+         *      如果未经声明就被初始化，那么它就会自动被添加到了全局上下文。
+         * let 声明的作用域：
+         *      let声明的作用域是块级的，块级作用域由最近的一对花括号{}界定
+         *      let在同一作用域内不能多次声明
+         * const声明的作用域：
+         *      const声明的变量必须同时初始化为某个值。一经声明，在其生命周期的任何时候都不能再
+         *      重新赋予新值
+         *      由于const声明暗示变量的值是单一类型且不可修改，JavaScript运行时编译器可以将其
+         *      所有实例都替换成实际的值，而不会通过查询表进行变量查找。
+         * 标识符查找：
+         *      当在特定上下文中为读取或写入而引用一个标识符时，必须通过搜索确定这个标识符表示什么。
+         *      索开始于作用域链前端，以给定的名称搜索对应的标识符。如果在局部上下文中找到该标识符，
+         *      则搜索停止，变量确定；如果没有找到变量名，
+         *      则继续沿作用域链搜索。
+         *      (作用域链中的对象也有一个原型链，
+         *      因此搜索可能涉及每个对象的原型链。)
+         *      这个过程一直持续到搜索至全局上下文的变量对象。
+         *      如果仍然没有找到标识符，则说明其未声明。
+         *
+         */ 
+
+         var color = "blue" ;
+         function getColor(){
+            return this.color ;
+         }
+        console.log(this.window.getColor()) ;
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

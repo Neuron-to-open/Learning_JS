@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>const_2</title>
+    <script>
+        const age = 90 ;
+        console.log( age ) ;
+        //age = 89 ; // 浏览器会报错，不能修改 TypeError
+        
+        // const 不允许重复声明
+        const name = "Max" ;
+        // const name = "sd " ; 
+
+        // const声明的作用域也是块
+        const Name = "Amy" ;
+        if (true){
+            const Name = "Jack" ;
+        }
+
+        console.log( Name ) ;
+
+        const person = {} ;
+        person.name = name ;
+        console.log(person);
+
+        let i =  0; 
+        for (const j = 7 ; i < 5 ;  ++ i){
+	        console.log ( j ) ; 
+        } // 7, 7, 7, 7, 7
+
+        for (const key in { a : 1 , b : 2 }){
+            console.log ( key ) ;
+        } // a , b
+
+        for (const value of [1, 2, 3, 4, 5]){
+            console.log(value) ;
+        } // 1, 2, 3, 4, 5
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
