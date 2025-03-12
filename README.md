@@ -1,2 +1,2 @@
-1.尚硅谷
-2.红宝石
+1.DaysOfJs   ----- the JavaScript
+2.HongBaoShi ----- the repeation of JavaScript
